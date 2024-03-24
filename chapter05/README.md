@@ -8,4 +8,5 @@ To follow along in this chapter, you will need to have Databricks workspace perm
 
 Furthermore, you will need to download and execute the accompanying notebook samples:
 
-- `Dynamic Views Demo.py` - Sample notebook that implements row and column level access control using a dynamic view.
+- `Dynamic Views Demo.py` - Sample Python notebook that implements row and column level access control using a dynamic view.
+- `Data Lineage Demo.sql` - Sample SQL notebook that creates parent-child tables for simulating data lineage tracking in Databricks. 
