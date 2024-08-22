@@ -9,3 +9,12 @@ Furthermore, you will need to download and execute the accompanying notebook sam
 - `Lineage Demo using Databricks REST API.py` - Data generator notebook that creates several tables used to explore the Lineage Graphing capabilities of the Catalog Explorer.
 - `Predicting Carbon Footprint.py` - Sample DLT pipeline notebook that ingest commercial airline flight data from `/databricks-datasets` directory.
 - `Working with the Databricks Lineage API.py` - Sample notebook that contains sample requests to the Lineage Tracking REST API.
+
+### Technical requirements
+To follow along in this chapter, you will need to have Databricks workspace permissions to create and start an all-purpose cluster so that you can execute all of the accompanying notebook cells. It's recommended to have Unity Catalog permissions to create and use Catalogs, Schemas, and Tables.
+
+### Expected costs
+This chapter will create and run several new notebooks and Delta Live Table pipelines using the `Core` product edition. As a result, the pipelines are estimated to consume around 5-10 Databricks Units (DBUs).
+
+Please see the Databricks documentation for the latest pricing figures: [Pricing calculator](https://www.databricks.com/product/pricing/product-pricing/instance-types).
+
