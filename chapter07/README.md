@@ -14,7 +14,7 @@ Furthermore, you will need to download and execute the accompanying notebook sam
 To follow along in this chapter, you will need to have Databricks workspace permissions to create and start an all-purpose cluster so that you can execute all of the accompanying notebook cells. It's recommended to have Unity Catalog permissions to create and use Catalogs, Schemas, and Tables.
 
 ### Expected costs
-This chapter will create and run several new notebooks and Delta Live Table pipelines using the `Core` product edition. As a result, the pipelines are estimated to consume around 5-10 Databricks Units (DBUs).
+This chapter will create and run several new notebooks that consume the Databricks REST API. As a result, the all-purpose cluster is estimated to consume around 5-10 Databricks Units (DBUs).
 
 Please see the Databricks documentation for the latest pricing figures: [Pricing calculator](https://www.databricks.com/product/pricing/product-pricing/instance-types).
 
