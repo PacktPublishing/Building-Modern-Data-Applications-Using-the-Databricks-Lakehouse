@@ -6,7 +6,7 @@ To follow along in this chapter, you will need to have permissions to create cat
 
 Furthermore, you will need to download and execute the accompanying notebook samples:
 
-- `Lineage Demo using Databricks REST API.py` - Data generator notebook that creates several tables used to explore the Lineage Graphing capabilities of the Catalog Explorer.
+- `01-Lineage Data Generator.py` - Data generator notebook that creates several tables used to explore the Lineage Graphing capabilities of the Catalog Explorer.
 - `Predicting Carbon Footprint.py` - Sample DLT pipeline notebook that ingest commercial airline flight data from `/databricks-datasets` directory.
 - `Working with the Databricks Lineage API.py` - Sample notebook that contains sample requests to the Lineage Tracking REST API.
 
