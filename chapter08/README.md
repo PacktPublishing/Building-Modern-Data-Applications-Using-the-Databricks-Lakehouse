@@ -4,7 +4,9 @@ In this chapter, we’re going to explore how an automation tool like Terraform 
 
 To follow along in this chapter, you will need to have workspace administrator permissions to provision new resources in a target Databricks workspace.
 
-You can always create a new notebook from scratch, but it's recommended to download and import the accompanying notebook samples:
+You can always create your own Terraform scripts from scratch, but it's recommended to download and import the accompanying notebook samples:
+
+- `01-Hello World` - a gentle introduction to the Databricks provider for Terraform
 
 ### Technical requirements
 To follow along in this chapter, you will need to have Databricks workspace permissions to create and start an all-purpose cluster so that you can execute all of the accompanying notebook cells. You will also need permissions to create and run a new DLT pipeline using a cluster policy. It's recommended to have Unity Catalog permissions to create and use Catalogs, Schemas, and Tables.
