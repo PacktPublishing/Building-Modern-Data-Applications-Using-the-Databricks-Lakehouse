@@ -1,0 +1,27 @@
+bundle:
+
+   name: "Hello World DAB"
+
+resources:
+
+   jobs:
+
+      hello-world-job:
+
+         name: "Hello, World!"
+
+         tasks:
+
+            - task-key: hello-world-task
+
+            existing_cluster_id: <existing_cluster_id>
+
+            notebook_task: 
+
+               notebook_path: ./hello-world-notebook.py
+
+targets:
+
+   dev:
+
+      default: true
