@@ -1,0 +1,54 @@
+name: "My First GitHub Action"
+
+on:
+
+   pull-request:
+
+      types:
+
+         - opened
+
+      branches:
+
+         - main 
+jobs:
+
+   deployment-job
+
+      name: "DAB Deployment Job"
+
+      runs-on: ubuntu-latest
+
+         steps:
+
+            - uses: actions/checkout@v3
+
+            - uses: databricks/setup-cli@main
+
+            - run: databricks bundle deploy
+
+              env:
+
+                 DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_SERVICE_PRINCIPAL_TOKEN }}
+
+pipeline_update:
+
+   name: "Test the pipeline update"
+
+   runs-on: ubuntu-latest
+
+   needs:
+
+      - deployment-job
+
+   steps:
+
+      - uses: actions/checkout@v3
+
+      - uses: databricks/setup-cli@main
+
+      - run: databricks bundle run hello-world-job
+
+      env:
+
+         DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_SERVICE_PRINCIPAL_TOKEN }}
