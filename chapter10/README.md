@@ -6,6 +6,9 @@ To follow along in this chapter, you will need to have workspace administrator p
 
 You can always create a new notebook from scratch, but it's recommended to download and import the accompanying notebook samples:
 
+- `01-Pipeline Health Monitoring.py` - A sample notebook which demonstrates how to query the DLT Pipeline event log and create helper Views.
+
+
 ### Technical requirements
 To follow along in this chapter, you will need to have Databricks workspace permissions to create and start an all-purpose cluster so that you can execute all of the accompanying notebook cells. You will also need permissions to create and run a new DLT pipeline using a cluster policy. It's recommended to have Unity Catalog permissions to create and use Catalogs, Schemas, and Tables.
 
