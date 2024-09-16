@@ -4,6 +4,9 @@
 # MAGIC A common approach to make it easier for data stewards to query events for a particular DLT pipeline is to register a view.
 # MAGIC
 # MAGIC This allows users to conveniently reference the event log results in subsequent queries.
+# MAGIC
+# MAGIC **Note:** You should update the DLT pipeline identifier and table name below to match your environment.
+
 
 # COMMAND ----------
 
@@ -12,7 +15,7 @@
 # MAGIC SELECT
 # MAGIC    *
 # MAGIC FROM
-# MAGIC    event_log("my_dlt_pipeline_id");
+# MAGIC    event_log('1234-1234-1234-1234');
 
 # COMMAND ----------
 
@@ -28,4 +31,4 @@
 # MAGIC SELECT
 # MAGIC    *
 # MAGIC FROM
-# MAGIC    event_log(TABLE("my_gold_table"));
+# MAGIC    event_log(TABLE(`my_catalog.my_schema.my_gold_table`));
