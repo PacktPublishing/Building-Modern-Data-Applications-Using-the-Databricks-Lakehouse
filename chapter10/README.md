@@ -7,12 +7,13 @@ To follow along in this chapter, you will need to have workspace administrator p
 You can always create a new notebook from scratch, but it's recommended to download and import the accompanying notebook samples:
 
 - `01-Pipeline Health Monitoring.py` - A sample notebook which demonstrates how to query the DLT Pipeline event log and create helper Views.
+- `02-Querying the Event Log.py` - This notebooks demonstrates how to monitor data quality metrics using the event log in Unity Catalog.
 
 
 ### Technical requirements
 To follow along in this chapter, you will need to have Databricks workspace permissions to create and start an all-purpose cluster so that you can execute all of the accompanying notebook cells. You will also need permissions to create and run a new DLT pipeline using a cluster policy. It's recommended to have Unity Catalog permissions to create and use Catalogs, Schemas, and Tables.
 
 ### Expected costs
-This chapter will create and run several new notebooks and Delta Live Table pipelines using the `Core` product edition. As a result, the pipelines are estimated to consume around 10-15 Databricks Units (DBUs).
+This chapter will create and run several new notebooks and Delta Live Table pipelines using the `Advanced` product edition. As a result, the pipelines are estimated to consume around 10-15 Databricks Units (DBUs).
 
 Please see the Databricks documentation for the latest pricing figures: [Pricing calculator](https://www.databricks.com/product/pricing/product-pricing/instance-types).
