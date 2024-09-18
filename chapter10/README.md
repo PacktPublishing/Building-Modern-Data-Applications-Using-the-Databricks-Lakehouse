@@ -8,6 +8,7 @@ You can always create a new notebook from scratch, but it's recommended to downl
 
 - `01-Pipeline Health Monitoring.py` - A sample notebook which demonstrates how to query the DLT Pipeline event log and create helper Views.
 - `02-Querying the Event Log.py` - This notebooks demonstrates how to monitor data quality metrics using the event log in Unity Catalog.
+- `03-Creating a Lakehouse Monitor.py` - This notebook creates a synthetic dataset that mimics IoT device temperature readings, which is used to create a Lakehouse monitor.
 
 
 ### Technical requirements
