@@ -10,6 +10,7 @@ You can always create a new notebook from scratch, but it's recommended to downl
 - `02-Querying the Event Log.py` - This notebooks demonstrates how to monitor data quality metrics using the event log in Unity Catalog.
 - `03-Creating a Lakehouse Monitor.py` - This notebook creates a synthetic dataset that mimics IoT device temperature readings, which is used to create a Lakehouse monitor.
 - `04-IoT Device Data Generator.py` - A sample notebook that generates synthetic IoT device readings and stores them as JSON files in cloud storage.
+- `04b-IoT Device Data Pipeline.py` - This notebook contains the DLT pipeline definition for ingesting the raw JSON data written by the data generator notebook.
 
 
 ### Technical requirements
