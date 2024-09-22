@@ -1,54 +1,34 @@
-name: "My First GitHub Action"
+name: "DABs in Action" 
 
-on:
-
-   pull-request:
-
-      types:
-
-         - opened
-
-      branches:
-
+on: 
+   push: 
+      branches:  
          - main 
-jobs:
 
-   deployment-job
+jobs: 
+   bundle-and-deploy: 
+      name: "DAB Deployment Job" 
+      runs-on: ubuntu-latest 
 
-      name: "DAB Deployment Job"
+      steps: 
+         - uses: actions/checkout@v3 
+         - uses: databricks/setup-cli@main 
+         - run: databricks bundle deploy --target prod 
+           working-directory: ./dabs  
+           env:  
+              DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_SERVICE_PRINCIPAL_TOKEN }} 
 
-      runs-on: ubuntu-latest
+   run-workflow: 
+      name: "Workflow Runner" 
+      runs-on: ubuntu-latest 
 
-         steps:
+      needs: 
+         - bundle-and-deploy 
 
-            - uses: actions/checkout@v3
-
-            - uses: databricks/setup-cli@main
-
-            - run: databricks bundle deploy
-
-              env:
-
-                 DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_SERVICE_PRINCIPAL_TOKEN }}
-
-pipeline_update:
-
-   name: "Test the pipeline update"
-
-   runs-on: ubuntu-latest
-
-   needs:
-
-      - deployment-job
-
-   steps:
-
-      - uses: actions/checkout@v3
-
-      - uses: databricks/setup-cli@main
-
-      - run: databricks bundle run hello-world-job
-
-      env:
-
-         DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_SERVICE_PRINCIPAL_TOKEN }}
+      steps: 
+         - uses: actions/checkout@v3 
+         - uses: databricks/setup-cli@main 
+         - run: databricks bundle run hello-world-job 
+           working-directory: ./dabs  
+           env:
+              DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_SERVICE_PRINCIPAL_TOKEN }}
