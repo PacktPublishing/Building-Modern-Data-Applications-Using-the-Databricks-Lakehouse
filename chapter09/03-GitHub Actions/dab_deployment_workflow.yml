@@ -1,0 +1,34 @@
+name: "DABs in Action"
+
+on:
+   push:
+      branches:
+         - main
+
+jobs:
+   bundle-and-deploy:
+      name: "DAB Deployment Job"
+      runs-on: ubuntu-latest
+
+      steps: 
+         - uses: actions/checkout@v3
+         - uses: databricks/setup-cli@main
+         - run: databricks bundle deploy --target prod
+           working-directory: ./dabs
+           env:
+              DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_SERVICE_PRINCIPAL_TOKEN }}
+
+   run-workflow:
+      name: "Test the the deployed pipelineworkflow"
+      runs-on: ubuntu-latest
+
+      needs:
+         - bundle-and-deploy
+
+      steps:
+         - uses: actions/checkout@v3
+         - uses: databricks/setup-cli@main
+         - run: databricks bundle run hello-world-job
+           working-directory: ./dabs
+           env:
+              DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_SERVICE_PRINCIPAL_TOKEN }}
