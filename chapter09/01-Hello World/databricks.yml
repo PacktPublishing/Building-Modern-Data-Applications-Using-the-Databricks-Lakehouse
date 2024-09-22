@@ -1,0 +1,18 @@
+bundle:
+   name: hello_dab_world
+
+resources: 
+  jobs: 
+    hello_dab_world_job: 
+      name: hello_dab_world_job 
+      tasks: 
+        - task_key: notebook_task 
+          existing_cluster_id: <cluster_id> 
+          notebook_task: 
+            notebook_path: ./src/hello_dab_world.py 
+
+targets: 
+  dev: 
+    default: true 
+    workspace: 
+      host: https://<workspace_name>.cloud.databricks.com 
