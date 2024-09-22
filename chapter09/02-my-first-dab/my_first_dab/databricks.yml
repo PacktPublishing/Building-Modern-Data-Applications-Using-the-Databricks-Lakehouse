@@ -1,0 +1,13 @@
+bundle:
+  name: my_first_dab
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://<workspace_name>.cloud.databricks.com
+

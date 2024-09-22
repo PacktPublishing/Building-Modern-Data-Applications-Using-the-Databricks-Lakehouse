@@ -1,0 +1,12 @@
+# The main pipeline for my_first_dab
+resources:
+  pipelines:
+    my_first_dab_pipeline:
+      name: my_first_dab_pipeline
+      target: my_first_dab_${bundle.environment}
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: /Workspace/${workspace.file_path}/src

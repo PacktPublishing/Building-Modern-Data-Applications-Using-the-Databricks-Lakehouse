@@ -1,0 +1,27 @@
+# The main job for my_first_dab.
+# This job runs my_first_dab_pipeline on a schedule.
+resources:
+  jobs:
+    my_first_dab_job:
+      name: my_first_dab_job
+
+      trigger:
+        # Run this job every day, exactly one day from the last run;
+        # see https://docs.databricks.com/api/workspace/jobs/create#trigger
+        periodic:
+          interval: 1
+          unit: DAYS
+
+      tasks:
+        - task_key: refresh_pipeline
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.my_first_dab_pipeline.id}
+
+      job_clusters:
+        - job_cluster_key: job_cluster
+          new_cluster:
+            spark_version: 15.4.x-scala2.12
+            node_type_id: i3.xlarge
+            autoscale:
+                min_workers: 1
+                max_workers: 4
