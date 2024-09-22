@@ -6,6 +6,7 @@ To follow along in this chapter, you will need to have workspace administrator p
 
 You can always create a new notebook from scratch, but it's recommended to download and import the accompanying code samples:
 
+- `01-Hello World` - a "Hello, World!" example DAB for getting started working with DABs to deploy resources in Databricks. 
 - `03-GitHub Actions/dab_deployment_workflow.yml` - a sample workflow for incorporating DABs into a CI/CD pipeline using GitHub Actions.
 
 ### Technical requirements
