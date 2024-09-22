@@ -4,7 +4,9 @@ In this chapter, a relatively new **Continuous Integration and Continuous Deploy
 
 To follow along in this chapter, you will need to have workspace administrator permissions to provision new resources in a target Databricks workspace.
 
-You can always create a new notebook from scratch, but it's recommended to download and import the accompanying notebook samples:
+You can always create a new notebook from scratch, but it's recommended to download and import the accompanying code samples:
+
+- `03-GitHub Actions/dab_deployment_workflow.yml` - a sample workflow for incorporating DABs into a CI/CD pipeline using GitHub Actions.
 
 ### Technical requirements
 To follow along in this chapter, you will need to have Databricks workspace permissions to create and start an all-purpose cluster so that you can execute all of the accompanying notebook cells. You will also need permissions to create and run a new DLT pipeline using a cluster policy. It's recommended to have Unity Catalog permissions to create and use Catalogs, Schemas, and Tables.
