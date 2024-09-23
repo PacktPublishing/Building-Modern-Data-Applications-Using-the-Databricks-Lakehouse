@@ -67,14 +67,14 @@ def generate_randmon_trip_data():
   from dbldatagen import DataGenerator
 
   # Randomly choose between generating 25 to 150 rows of data
-  num_rows = random.uniform(25, 150)
+  num_rows = random.uniform(250000, 1500000)
 
   # Taxi cab Ids
   driver_ids = [20042, 14567, 997, 6579, 3392, 7755, 33209, 101, 45587]
 
   # Let's define how our sample DataFrame should look
   data_spec = (
-    DataGenerator(sparkSession=spark, name="taxi_trip", rows=num_rows, partitions=4,random=True)
+    DataGenerator(sparkSession=spark, name="taxi_trip", rows=num_rows, partitions=8,random=True)
       .withIdOutput()
       .withColumn("driver_id", IntegerType(), values=driver_ids)
       .withColumn("Trip_Pickup_DateTime", TimestampType(), uniqueValues=300, random=True)
@@ -132,7 +132,7 @@ for i in range (0, max_num_iterations):
   print(f"Wrote {trip_data_df.count()} new rows.")
 
   # Choose a random amount of time to pause between data writes
-  sleep_length_secs = random.randint(5, 30) 
+  sleep_length_secs = random.randint(5, 15) 
   print(f"Sleeping for {sleep_length_secs} seconds.")
   time.sleep(sleep_length_secs)
 
