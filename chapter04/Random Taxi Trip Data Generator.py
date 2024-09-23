@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %pip install dbldatagen faker
+# MAGIC %pip install dbldatagen==0.4.0 faker
 
 # COMMAND ----------
 
@@ -24,11 +24,27 @@ spark.conf.set(f"fs.azure.account.auth.type.{storage_account}.dfs.core.windows.n
 spark.conf.set(f"fs.azure.sas.token.provider.type.{storage_account}.dfs.core.windows.net", "org.apache.hadoop.fs.azurebfs.sas.FixedSASTokenProvider")
 spark.conf.set(f"fs.azure.sas.fixed.token.{storage_account}.dfs.core.windows.net", storage_credential)
 
+storage_path = f"abfss://{container_name}@{storage_account}.dfs.core.windows.net/"
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### Storing data in the Databricks FileSystem 
+# MAGIC Alternatively, you can use the Databricks FileSystem (DBFS) to store data in the managed storage account.
+
+# COMMAND ----------
+
+dbutils.fs.mkdirs("/tmp/chp_04/taxi_trip_data")
+dbutils.fs.mkdirs("/tmp/chp_04/taxi_trip_data_chkpnt")
+spark.sql("CREATE CATALOG IF NOT EXISTS building_modern_dapps")
+spark.sql("CREATE SCHEMA IF NOT EXISTS building_modern_dapps.chp_04")
+
+
 # COMMAND ----------
 
 # Next, we can test the cloud storage path to see if authentication is successful
 container_name = "yellowtaxi"
-storage_path = f"abfss://{container_name}@{storage_account}.dfs.core.windows.net/"
+storage_path = "/tmp/chp_04/taxi_trip_data"
 
 # Ensure that you can authenticate with the storage service and list the directory contents
 dbutils.fs.ls(storage_path)
@@ -88,6 +104,7 @@ def generate_randmon_trip_data():
 # COMMAND ----------
 
 # MAGIC %md
+# MAGIC ### Generating random taxi trip data
 # MAGIC
 # MAGIC We want to simulate unpredictable data ingestion you could expect in a production environment. We'll leverage the Python `random` library to simulate random behavior.
 # MAGIC
@@ -97,7 +114,7 @@ def generate_randmon_trip_data():
 import time
 
 # Create the raw landing zone if not exists
-raw_landing_zone = f"abfss://{container_name}@{storage_account}.dfs.core.windows.net/raw-zone"
+raw_landing_zone = f"{storage_path}/raw-zone"
 dbutils.fs.mkdirs(raw_landing_zone)
 
 # Choose a random number of iterations of trip data to write to cloud storage
@@ -120,3 +137,12 @@ for i in range (0, max_num_iterations):
   time.sleep(sleep_length_secs)
 
 # COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### Cleanup
+# MAGIC Optionally, you can cleanup the data that was generated for this hands-on exercise by executing the following cell.
+
+# COMMAND ----------
+
+#dbutils.fs.rm("/tmp/chp_04", recurse=True)
+#spark.sql("DROP SCHEMA IF EXISTS building_modern_dapps.chp_04 CASCADE")
