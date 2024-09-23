@@ -24,17 +24,18 @@ spark.conf.set(f"fs.azure.sas.fixed.token.{storage_account}.dfs.core.windows.net
 
 # COMMAND ----------
 
-# Next, we can test the cloud storage path to see if authentication is successful
-container_name = "yellowtaxi"
-storage_path = f"abfss://{container_name}@{storage_account}.dfs.core.windows.net/"
-
-# Ensure that you can authenticate with the storage service and list the directory contents
-dbutils.fs.ls(storage_path)
+# MAGIC %md
+# MAGIC ### Using the Databricks FileSystem
+# MAGIC Alternatively, you can simplify the configuration setup by using the Databricks FileSystem (DBFS) which does not need additional authentication.
 
 # COMMAND ----------
 
+# Next, we can test the cloud storage path to see if authentication is successful
+container_name = "yellowtaxi"
+storage_path = "/tmp/chp_04/taxi_trip_data"
+
 # Path to the raw landing zone
-raw_landing_zone = f"abfss://{container_name}@{storage_account}.dfs.core.windows.net/raw-zone"
+raw_landing_zone = f"{storage_path}/raw-zone"
 
 # COMMAND ----------
 
@@ -100,5 +101,4 @@ def random_trip_data_silver():
           .withColumn("car_maintenance_fees", F.col("Total_Amt") - F.col("Trip_Distance") * 0.15)
           .withColumn("driver_pay", F.col("Total_Amt") * 0.4)
           .withColumn("front_office_pay", F.col("Total_Amt") * 0.20))
-
-# COMMAND ----------
+  
