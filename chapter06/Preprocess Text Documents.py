@@ -36,7 +36,7 @@ def text_docs_raw():
   comment="Raw PDF documents generated for Generative AI pipeline."
 )
 def pdf_docs_raw():
-  volume_path = "/Volumes/{CATALOG_NAME}/{SCHEMA_NAME}/{VOLUME_NAME}/*.pdf"
+  volume_path = f"/Volumes/{CATALOG_NAME}/{SCHEMA_NAME}/{VOLUME_NAME}/*.pdf"
   df = (spark.read
         .format("binaryFile")
         .load(volume_path))
@@ -74,7 +74,7 @@ def csv_docs_raw():
     StructField('content19', StringType(), True),
     StructField('content20', StringType(), True)
   ])
-  volume_path = "/Volumes/{CATALOG_NAME}/{SCHEMA_NAME}/{VOLUME_NAME}/*.csv"
+  volume_path = f"/Volumes/{CATALOG_NAME}/{SCHEMA_NAME}/{VOLUME_NAME}/*.csv"
   df = (spark.readStream
         .format("csv")
         .schema(schema)
