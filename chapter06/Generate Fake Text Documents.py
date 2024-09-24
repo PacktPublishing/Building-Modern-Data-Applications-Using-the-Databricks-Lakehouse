@@ -18,20 +18,23 @@ dbutils.library.restartPython()
 # COMMAND ----------
 
 # Globals
+# ** IMPORTANT NOTE: **
+# Replace these values to match your environment
 catalog_name = "<REPLACE_ME>"
 schema_name = "<REPLACE_ME>"
 volume_name = "<REPLACE_ME>"
 storage_location = "<REPLACE_ME>"
 
+
 # COMMAND ----------
 
-display(
-  spark.sql(f"""
-    CREATE EXTERNAL VOLUME IF NOT EXISTS {catalog_name}.{schema_name}.{volume_name}
-    COMMENT 'External volume for storing miscellaneous documents'
-    LOCATION '{storage_location}'
-  """)
-)
+spark.sql(f"CREATE CATALOG IF NOT EXISTS {catalog_name}")
+spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog_name}.{schema_name}")
+spark.sql(f"""
+  CREATE EXTERNAL VOLUME IF NOT EXISTS {catalog_name}.{schema_name}.{volume_name}
+  COMMENT 'External volume for storing miscellaneous documents'
+  LOCATION '{storage_location}'
+""")
 
 # COMMAND ----------
 
@@ -52,7 +55,7 @@ from shutil import copyfile
 def save_doc_as_text(file_name, save_path, paragraph):
   """Helper function that saves a paragraph of text as a text file"""
   tmp_path = f"/local_disk0/tmp/{file_name}"
-  volume_path = f"{save_path}/{file_name}"
+  volume_path = f"{save_path}/{file_name}" 
   print(f"Saving text file at : {tmp_path}")
   txtfile = open(tmp_path, "a")
   txtfile.write(paragraph)
@@ -66,7 +69,7 @@ def save_doc_as_pdf(file_name, save_path, paragraph):
   from reportlab.lib.pagesizes import letter
   from reportlab.lib.units import cm
   tmp_path = f"/local_disk0/tmp/{file_name}"
-  volume_path = f"{save_path}/{file_name}"
+  volume_path = f"{save_path}/{file_name}" 
   canvas = Canvas(tmp_path, pagesize=letter)
   lines = paragraph.split(".")
   textobject = canvas.beginText(5*cm, 25*cm)
@@ -82,7 +85,7 @@ def save_doc_as_csv(file_name, save_path, paragraph):
   """Helper function that saves a paragraph of text as a CSV file"""
   import csv
   tmp_path = f"/local_disk0/tmp/{file_name}"
-  volume_path = f"{save_path}/{file_name}"
+  volume_path = f"{save_path}/{file_name}" 
   print(f"Saving CSV file at : {tmp_path}")
   with open(tmp_path, 'w', newline='') as file:
     writer = csv.writer(file)
@@ -99,10 +102,11 @@ from faker import Faker
 import time
 import random
 
+Faker.seed(610)
 fake = Faker()
 
 # Randmonly generate documents
-num_docs = 5
+num_docs = 5 
 num_sentences_per_doc = 100
 doc_types = ["txt", "pdf", "csv"]
 volume_path = f"/Volumes/{catalog_name}/{schema_name}/{volume_name}"
@@ -127,5 +131,9 @@ for _ in range(num_docs):
     sleep_time = random.randint(3, 30)
     print(f"Sleeping for {sleep_time} seconds...\n\n")
     time.sleep(sleep_time)
+
+# COMMAND ----------
+
+spark.sql(f"""LIST '/Volumes/{catalog_name}/{schema_name}/{volume_name}/'""").display()
 
 # COMMAND ----------
