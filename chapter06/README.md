@@ -7,3 +7,4 @@ To follow along in this chapter, you will need to have administrator permissions
 Furthermore, you will need to download and execute the accompanying notebook samples:
 
 - `Generate Fake Text Documents.py` - Sample Python notebook that randomly generates text, PDF, and CSV documents and saves it to a Databricks storage voloume.
+- `Preprocess Text Documents.py` - Contains the DLT pipeline definition for a document processing pipeline which has applications in use cases like Generative AI.
