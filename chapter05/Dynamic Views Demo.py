@@ -48,7 +48,7 @@ spark.sql(f"USE SCHEMA {SCHEMA_NAME}")
 covid_df = (spark.read
             .option("header", True)
             .option("inferSchema", True)
-            .csv("{COVID_DATASET_PATH}"))
+            .csv(COVID_DATASET_PATH))
 (covid_df.write
   .mode("overwrite")
   .saveAsTable(f"{CATALOG_NAME}.{SCHEMA_NAME}.{PERSISTENT_TABLE_NAME}"))
