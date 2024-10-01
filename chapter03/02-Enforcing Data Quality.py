@@ -19,7 +19,7 @@ from pyspark.sql.functions import *
 )
 def yellow_taxi_raw():
   path = "/tmp/chp_03/taxi_data"
-  schema = "trip_id INT, taxi_number, INT, passenger_count INT, trip_amount FLOAT, trip_distance FLOAT, trip_date DATE"
+  schema = "trip_id INT, taxi_number INT, passenger_count INT, trip_amount FLOAT, trip_distance FLOAT, trip_date DATE"
   return (spark.readStream
                .schema(schema)
                .format("json")
