@@ -17,7 +17,7 @@ def generate_taxi_trip_data():
       .withColumn("trip_id", IntegerType(), minValue=1000000, maxValue=2000000)
       .withColumn("taxi_number", IntegerType(), uniqueValues=10000, random=True)
       .withColumn("passenger_count", IntegerType(), minValue=1, maxValue=4)
-      .withColumn("trip_amount", FloatType(), minValue=10.0, maxValue=1000.0)
+      .withColumn("trip_amount", FloatType(), minValue=-100.0, maxValue=1000.0, random=True)
       .withColumn("trip_distance", FloatType(), minValue=0.1, maxValue=1000.0)
       .withColumn("trip_date", DateType(), uniqueValues=300, random=True))
 
