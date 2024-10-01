@@ -29,7 +29,7 @@ def yellow_taxi_raw():
 
 @dlt.table(name="trip_data_financials",
            comment="Financial information from incoming taxi trips.")
-@dlt.expect_or_fail("valid_total_amount", "trip_amount > 0.0")
+@dlt.expect("valid_total_amount", "trip_amount > 0.0")
 def trip_data_financials():
   return (dlt.readStream("yellow_taxi_raw")
              .withColumn("driver_payment", expr("trip_amount * 0.40"))
