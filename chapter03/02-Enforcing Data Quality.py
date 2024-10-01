@@ -38,3 +38,18 @@ def trip_data_financials():
              .withColumn("potential_profits", expr("trip_amount * 0.45")))
 
 # COMMAND ----------
+
+assertions = {
+   "total_amount_constraint": "trip_amount > 0.0",
+   "passenger_count": "passenger_count >= 1"
+}
+
+@dlt.table(
+   name="yellow_taxi_validated",
+   comment="A dataset containing trip data that has been validated.")
+@dlt.expect_all_or_drop(assertions)
+def yellow_taxi_validated():
+   return (dlt.readStream("yellow_taxi_raw")
+      .withColumn("nyc_congestion_tax", expr("trip_amount * 0.05"))) 
+
+# COMMAND ----------
