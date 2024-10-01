@@ -4,6 +4,14 @@
 # MAGIC Let's revist our previous DLT pipeline definition and update the expecation, `expect_all()` to call our helper function that will read the latest data quality rules from our Delta table.
 
 # COMMAND ----------
+
+# ** NOTE: **
+# You should update these values according to your environment
+RULES_TABLE = "building_modern_dapps.chp_03.data_quality_rules"
+DATASET_NAME = "yellow_taxi_raw"
+
+# COMMAND ----------
+
 def compile_data_quality_rules(rules_table_name, dataset_name):
    """A helper function that reads from the data_quality_rules table and coverts to a format interpreted by a DLT Expectation."""
    rules = spark.sql(f"""SELECT * FROM {rules_table_name} WHERE dataset_name='{dataset_name}'""").collect()
@@ -34,7 +42,7 @@ def yellow_taxi_raw():
 @dlt.table(
    name="yellow_taxi_validated",
    comment="A dataset containing trip data that has been validated.")
-@dlt.expect_all(compile_data_quality_rules("building_modern_dapps.chp_03.data_quality_rules", "yellow_taxi_raw"))
+@dlt.expect_all(compile_data_quality_rules(RULES_TABLE, DATASET_NAME))
 def yellow_taxi_validated():
    return (dlt.readStream("yellow_taxi_raw")
       .withColumn("nyc_congestion_tax", expr("trip_amount * 0.05")))
