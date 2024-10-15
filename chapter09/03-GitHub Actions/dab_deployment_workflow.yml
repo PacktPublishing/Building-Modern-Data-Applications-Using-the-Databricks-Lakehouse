@@ -19,7 +19,7 @@ jobs:
               DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_SERVICE_PRINCIPAL_TOKEN }}
 
    run-workflow:
-      name: "Test the the deployed pipelineworkflow"
+      name: "Test the deployed pipeline workflow"
       runs-on: ubuntu-latest
 
       needs:
@@ -28,7 +28,7 @@ jobs:
       steps:
          - uses: actions/checkout@v3
          - uses: databricks/setup-cli@main
-         - run: databricks bundle run hello-world-job
+         - run: databricks bundle run my_first_dab_job
            working-directory: ./dabs
            env:
               DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_SERVICE_PRINCIPAL_TOKEN }}
