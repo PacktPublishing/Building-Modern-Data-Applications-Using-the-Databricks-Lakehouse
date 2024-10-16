@@ -35,7 +35,7 @@ data_quality_rules = {
 
 @dlt.table(
    name="yellow_taxi_validated",
-   comment="Validation table that applies validation logic to the incoming data"
+   comment="Validation table that applies data quality rules to the incoming data"
 )
 def yellow_taxi_validated():
    return (dlt.readStream("yellow_taxi_raw")
