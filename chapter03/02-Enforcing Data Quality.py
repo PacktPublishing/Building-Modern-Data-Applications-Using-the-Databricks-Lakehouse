@@ -15,7 +15,7 @@ from pyspark.sql.functions import *
 # COMMAND ----------
 
 @dlt.table(
-  comment="The randmonly generated taxi trip dataset"
+  comment="The randomly generated taxi trip dataset"
 )
 def yellow_taxi_raw():
   path = "/tmp/chp_03/taxi_data"
