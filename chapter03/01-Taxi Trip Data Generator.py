@@ -13,7 +13,7 @@ def generate_taxi_trip_data():
   from pyspark.sql.types import IntegerType, StringType, FloatType, DateType
 
   ds = (
-      dg.DataGenerator(spark, name="data_quality_taxi_trip_dataset", rows=100000, partitions=8)
+      dg.DataGenerator(spark, name="random_taxi_trip_dataset", rows=100000, partitions=8)
       .withColumn("trip_id", IntegerType(), minValue=1000000, maxValue=2000000)
       .withColumn("taxi_number", IntegerType(), uniqueValues=10000, random=True)
       .withColumn("passenger_count", IntegerType(), minValue=1, maxValue=4)
