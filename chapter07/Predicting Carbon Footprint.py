@@ -99,6 +99,8 @@ def commercial_airliner_flights_bronze():
 # Let's create a User-defined Function (UDF) for randomly associating
 # Tail numbers with a our commercial jets
 from pyspark.sql.types import StringType
+from pyspark.sql.functions import udf
+
 @udf(returnType=StringType())
 def generate_jet_model():
   import random
