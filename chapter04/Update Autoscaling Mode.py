@@ -2,18 +2,18 @@
 import requests
 
 # Workspace URL copied from the browser URL
-databricks_workspace_url = f"https://yourdatabricksworkspaceurl/"
+databricks_workspace_url = f"https://<yourdatabricksworkspaceurl>"
 
 # Generated personal access token
 # https://docs.databricks.com/en/dev-tools/auth/pat.html#databricks-personal-access-tokens-for-workspace-users
-pat_token = "dapi-yourapitoken"
+pat_token = "<dapi-yourapitoken>"
 
 # Pipeline Id created from the Taxi Trip Data Pipeline
-pipeline_id = "yourpipelineid"
+pipeline_id = "<yourpipelineid>"
 
 # Get the current pipeline settings
 response = requests.get(
-  f"{databricks_workspace_url}api/2.0/pipelines/{pipeline_id}",
+  f"{databricks_workspace_url}/api/2.0/pipelines/{pipeline_id}",
   headers={
     "Authorization": f"Bearer {pat_token}"
   }
@@ -27,7 +27,7 @@ print(response.json())
 # Update the autoscaling mode pipeline settings
 # Note: Use the GET request above to fetch the pipeline JSON settings
 response = requests.put(
-  f"{databricks_workspace_url}api/2.0/pipelines/{pipeline_id}",
+  f"{databricks_workspace_url}/api/2.0/pipelines/{pipeline_id}",
   headers={
     "Authorization": f"Bearer {pat_token}"
   },
